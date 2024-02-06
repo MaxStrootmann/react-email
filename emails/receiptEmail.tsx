@@ -109,21 +109,39 @@ const ReceiptEmail = () => {
                 />
               </Section>
               <Heading as='h1' className='text-2xl font-display'>
-                Ontvangstbewijs van Haar Atelier Alkmaar
+                Bestelling van Haar Atelier Alkmaar
               </Heading>
               <Heading as='h2' className='text-base font-light'>
                 Ontvangstbewijs nummer: {receipt.receiptNumber}
               </Heading>
               <Section>
                 <Row>
-                  <Column className='text-left'>
-                    <Heading as='h2' className='text-base my-0'>
+                  <Column className='text-left max-w-[300px] inline-block align-top'>
+                    <Heading as='h2' className='text-base my-0 text-slate-500'>
+                      Verzendadres:
+                    </Heading>
+                    <Text className='my-0'>
+                      {receipt.customerAddress.line1 + " " + receipt.customerAddress.line2}
+                      <br />
+                      {receipt.customerAddress.postal_code}
+                      <br />
+                      {receipt.customerAddress.city}
+                    </Text>
+                    <Heading as='h2' className='text-base my-0 text-slate-500'>
                       Betaald bedrag:
                     </Heading>
                     <Text className='my-0'>€{(receipt.amount / 100).toFixed(2).replace(".", ",")}</Text>
                   </Column>
-                  <Column className='text-left'>
-                    <Heading as='h2' className='text-base my-0'>
+                  <Column className='text-left max-w-[300px] inline-block align-top'>
+                    <Heading as='h2' className='text-base my-0 text-slate-500'>
+                      Naam:
+                    </Heading>
+                    <Text className='my-0'>{receipt.customerName}</Text>
+                    <Heading as='h2' className='text-base my-0 text-slate-500'>
+                      Email:
+                    </Heading>
+                    <Text className='my-0'>{receipt.customerEmail}</Text>
+                    <Heading as='h2' className='text-base my-0 text-slate-500'>
                       Datum van betaling:
                     </Heading>
                     <Text className='my-0'>{receipt.date}</Text>
@@ -131,21 +149,7 @@ const ReceiptEmail = () => {
                 </Row>
               </Section>
               <Section className='text-left'>
-                <Text>
-                  <strong>Klant:</strong> {receipt.customerName}
-                </Text>
-                <Text>
-                  <strong>Email:</strong> {receipt.customerEmail}
-                </Text>
-                <Text>
-                  <strong>Verzendadres:</strong>
-                  <br />
-                  {receipt.customerAddress.line1 + " " + receipt.customerAddress.line2}
-                  <br />
-                  {receipt.customerAddress.postal_code}
-                  <br />
-                  {receipt.customerAddress.city}
-                </Text>
+                <Text></Text>
                 {receipt.transactionDetails.map((item: any) => (
                   <Text key={item.id}>
                     {item.name !== "Verzendkosten (gratis vanaf €75)"
