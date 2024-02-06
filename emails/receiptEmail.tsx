@@ -1,4 +1,16 @@
-import { Body, Container, Head, Html, Img, Preview, Section, Text } from "@react-email/components";
+import {
+  Body,
+  Column,
+  Container,
+  Head,
+  Heading,
+  Html,
+  Img,
+  Preview,
+  Row,
+  Section,
+  Text,
+} from "@react-email/components";
 import { Tailwind } from "@react-email/tailwind";
 import * as React from "react";
 
@@ -54,9 +66,17 @@ const ReceiptEmail = () => {
           theme: {
             extend: {
               fontFamily: {
-                sans: ["Poppins", "sans-serif"],
-                display: ["Cormorant SC", "serif"],
-                serif: ["Adamina", "serif"],
+                sans: [
+                  "Seravek",
+                  "Gill Sans Nova",
+                  "Ubuntu",
+                  "Calibri",
+                  "DejaVu Sans",
+                  "source-sans-pro",
+                  "sans-serif",
+                ],
+                display: ["Charter", "Bitstream Charter", "Sitka Text", "Cambria", "serif"],
+                serif: ["Charter", "Bitstream Charter", "Sitka Text", "Cambria", "serif"],
               },
               colors: {
                 transparent: "transparent",
@@ -80,13 +100,35 @@ const ReceiptEmail = () => {
         <Body className='bg-bg-300 font-sans'>
           <Container className='m-auto'>
             <Section className='text-center'>
-              <Section className='m-auto pt-4 w-20'>
+              <Section className='m-auto py-4 w-20'>
                 <Img
                   src='https://drive.google.com/uc?export=view&id=1bV9a7kTZJykl8Ib-14mBGxAqB8NSZQZ4'
                   width='200'
                   height='100%'
                   alt='Haar Atelier Logo'
                 />
+              </Section>
+              <Heading as='h1' className='text-2xl font-display'>
+                Ontvangstbewijs van Haar Atelier Alkmaar
+              </Heading>
+              <Heading as='h2' className='text-base font-light'>
+                Ontvangstbewijs nummer: {receipt.receiptNumber}
+              </Heading>
+              <Section>
+                <Row>
+                  <Column className='text-left'>
+                    <Heading as='h2' className='text-base my-0'>
+                      Betaald bedrag:
+                    </Heading>
+                    <Text className='my-0'>€{(receipt.amount / 100).toFixed(2).replace(".", ",")}</Text>
+                  </Column>
+                  <Column className='text-left'>
+                    <Heading as='h2' className='text-base my-0'>
+                      Datum van betaling:
+                    </Heading>
+                    <Text className='my-0'>{receipt.date}</Text>
+                  </Column>
+                </Row>
               </Section>
               <Section className='text-left'>
                 <Text>
